@@ -4,10 +4,10 @@ const Sidebar = () => {
         <nav>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="block p-2 hover:bg-gray-700 rounded">หน้าหลัก</a>
+              <a href="/" className="block p-2 hover:bg-gray-700 rounded">หน้าหลัก</a>
             </li>
             <li>
-              <a href="#" className="block p-2 hover:bg-gray-700 rounded">บัญชีที่ 1</a>
+              <a href="/list_1" className="block p-2 hover:bg-gray-700 rounded">บัญชีที่ 1</a>
             </li>
             <li>
               <a href="#" className="block p-2 hover:bg-gray-700 rounded">บัญชีที่ 2</a>
