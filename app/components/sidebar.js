@@ -19,7 +19,7 @@ const Sidebar = () => {
         className="text-white mb-4 p-2 hover:bg-gray-700 rounded focus:outline-none"
         aria-label="Toggle Sidebar"
       >
-        <Menu />
+        <Menu /> 
       </button>
 
       <nav className="flex-1">

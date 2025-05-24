@@ -15,6 +15,7 @@ import {
     CheckCircle,
     FileText,
 } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Lawyers() {
     const [lawyers, setLawyers] = useState([]);
@@ -85,13 +86,16 @@ export default function Lawyers() {
             .from("lawyers")
             .update({ notes: editedNote })
             .eq("id", lawyerId);
-        if (error) console.error("Error updating note:", error);
-        else {
+        if (error) {
+            console.error("Error updating note:", error);
+            toast.error("เกิดข้อผิดพลาดในการบันทึกหมายเหตุ");
+        } else {
             setLawyers((prev) =>
                 prev.map((lawyer) =>
                     lawyer.id === lawyerId ? { ...lawyer, notes: editedNote } : lawyer
                 )
             );
+            toast.success("บันทึกหมายเหตุสำเร็จ");
         }
         setEditingLawyerId(null);
         setEditedNote("");
@@ -120,13 +124,16 @@ export default function Lawyers() {
             .from("lawyers")
             .update({ status })
             .eq("id", lawyerId);
-        if (error) console.error("Error updating status:", error);
-        else {
+        if (error) {
+            console.error("Error updating status:", error);
+            toast.error("เกิดข้อผิดพลาดในการเปลี่ยนสถานะ");
+        } else {
             setLawyers((prev) =>
                 prev.map((lawyer) =>
                     lawyer.id === lawyerId ? { ...lawyer, status } : lawyer
                 )
             );
+            toast.success("เปลี่ยนสถานะสำเร็จ");
         }
         setEditingStatusId(null);
         setNewStatus("");
@@ -201,8 +208,12 @@ export default function Lawyers() {
     );
 
     return (
-        <div className="p-8 flex flex-col min-h-screen bg-white">
-            <h1 className="text-2xl font-bold mb-4 text-center"> รายชื่อทนายความบัญชีที่ 1</h1>
+        <div className="p-8 flex flex-col min-h-screen">
+            <Toaster position="top-right" reverseOrder={false} />
+            <h1 className="text-2xl font-bold mb-4 text-center">
+                บัญชีรายชื่อทนายขอแรง (บัญชี 1) ศาลจังหวัดปราจีนบุรี
+            </h1>
+            <h3 className="text-l font-bold mb-1 text-center">ประจำปี 2568 - 2570</h3>
 
             {/* Filters */}
             <div className="flex justify-end gap-4 mb-4">
@@ -271,7 +282,7 @@ export default function Lawyers() {
                         {currentLawyers.map((lawyer, index) => (
                             <tr
                                 key={lawyer.id}
-                                className="hover:bg-gray-50 cursor-pointer"
+                                className="hover:bg-gray-50 cursor-pointer bg-white"
                             >
                                 <td className="p-2 text-center">{index + 1 + indexOfFirst}</td>
                                 <td className="p-2">{lawyer.first_name} {lawyer.last_name}</td>
