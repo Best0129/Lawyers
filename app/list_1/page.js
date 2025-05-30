@@ -102,8 +102,9 @@ export default function Lawyers() {
     };
 
     const handleNoteKeyDown = (e, lawyerId) => {
-        if (e.key === "Enter") handleNoteSave(lawyerId);
-        else if (e.key === "Escape") {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault(); // Prevent the default action (e.g., form submission)
+        } else if (e.key === "Escape") {
             setEditingLawyerId(null);
             setEditedNote("");
         }
@@ -253,7 +254,7 @@ export default function Lawyers() {
                             </th>
                             <th className="w-48 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                    <User size={16} /> ชื่อ-นามสกุล
+                                    <User  size={16} /> ชื่อ-นามสกุล
                                 </div>
                             </th>
                             <th className="w-40 p-2 font-medium">

@@ -102,8 +102,9 @@ export default function Lawyers() {
     };
 
     const handleNoteKeyDown = (e, lawyerId) => {
-        if (e.key === "Enter") handleNoteSave(lawyerId);
-        else if (e.key === "Escape") {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault(); // Prevent the default action (e.g., form submission)
+        } else if (e.key === "Escape") {
             setEditingLawyerId(null);
             setEditedNote("");
         }
@@ -211,7 +212,7 @@ export default function Lawyers() {
         <div className="p-8 flex flex-col min-h-screen">
             <Toaster position="top-right" reverseOrder={false} />
             <h1 className="text-2xl font-bold mb-4 text-center">
-                บัญชีรายชื่อทนายขอแรง (บัญชี 2) ศาลจังหวัดปราจีนบุรี
+                บัญชีรายชื่อทนายขอแรง (บัญชี 1) ศาลจังหวัดปราจีนบุรี
             </h1>
             <h3 className="text-l font-bold mb-1 text-center">ประจำปี 2568 - 2570</h3>
 
@@ -242,7 +243,7 @@ export default function Lawyers() {
             </div>
 
             {/* Table */}
-            <div className="overflow-x-auto bg-white">
+            <div className="overflow-x-auto">
                 <table className="min-w-full table-fixed rounded-lg shadow-lg border border-gray-300">
                     <thead>
                         <tr className="bg-gray-100 text-center">
@@ -253,12 +254,12 @@ export default function Lawyers() {
                             </th>
                             <th className="w-48 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                    <User size={16} /> ชื่อ-นามสกุล
+                                    <User  size={16} /> ชื่อ-นามสกุล
                                 </div>
                             </th>
                             <th className="w-40 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                   <Phone size={16} /> โทรศัพท์ 
+                                <Phone size={16} /> โทรศัพท์ 
                                 </div>
                             </th>
                             <th className="w-64 p-2 font-medium">
@@ -282,7 +283,7 @@ export default function Lawyers() {
                         {currentLawyers.map((lawyer, index) => (
                             <tr
                                 key={lawyer.id}
-                                className="hover:bg-gray-50 cursor-pointer"
+                                className="hover:bg-gray-50 cursor-pointer bg-white"
                             >
                                 <td className="p-2 text-center">{index + 1 + indexOfFirst}</td>
                                 <td className="p-2">{lawyer.first_name} {lawyer.last_name}</td>
