@@ -101,14 +101,17 @@ export default function Lawyers() {
         setEditedNote("");
     };
 
-    const handleNoteKeyDown = (e, lawyerId) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault(); // Prevent the default action (e.g., form submission)
-        } else if (e.key === "Escape") {
-            setEditingLawyerId(null);
-            setEditedNote("");
-        }
-    };
+const handleNoteKeyDown = (e, lawyerId) => {
+    if (e.key === "Enter") {
+        // Allow new line on Enter key press
+        e.preventDefault(); // Prevent the default action (e.g., form submission)
+        setEditedNote((prev) => prev + "\n"); // Add a new line to the note
+    } else if (e.key === "Escape") {
+        setEditingLawyerId(null);
+        setEditedNote("");
+    }
+};
+
 
     const handleStatusChange = (lawyer, value) => {
         setNewStatus(value);

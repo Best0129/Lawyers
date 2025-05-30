@@ -102,8 +102,10 @@ export default function Lawyers() {
     };
 
     const handleNoteKeyDown = (e, lawyerId) => {
-        if (e.key === "Enter" && !e.shiftKey) {
+        if (e.key === "Enter") {
+            // Allow new line on Enter key press
             e.preventDefault(); // Prevent the default action (e.g., form submission)
+            setEditedNote((prev) => prev + "\n"); // Add a new line to the note
         } else if (e.key === "Escape") {
             setEditingLawyerId(null);
             setEditedNote("");
@@ -254,27 +256,27 @@ export default function Lawyers() {
                             </th>
                             <th className="w-48 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                    <User  size={16} /> ชื่อ-นามสกุล
+                                    <User size={16} /> ชื่อ-นามสกุล
                                 </div>
                             </th>
                             <th className="w-40 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                <Phone size={16} /> โทรศัพท์ 
+                                    <Phone size={16} /> โทรศัพท์
                                 </div>
                             </th>
                             <th className="w-64 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                   <Tag size={16} /> ความเชี่ยวชาญ 
+                                    <Tag size={16} /> ความเชี่ยวชาญ
                                 </div>
                             </th>
                             <th className="w-24 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                   <CheckCircle size={16} /> สถานะ 
+                                    <CheckCircle size={16} /> สถานะ
                                 </div>
                             </th>
                             <th className="w-64 p-2 font-medium">
                                 <div className="flex items-center justify-center gap-1">
-                                   <FileText size={16} /> หมายเหตุ 
+                                    <FileText size={16} /> หมายเหตุ
                                 </div>
                             </th>
                         </tr>
