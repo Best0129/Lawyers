@@ -11,7 +11,7 @@ const Sidebar = () => {
     <aside
       className={`${
         isOpen ? 'w-64' : 'w-20'
-      } bg-gray-900 text-white p-4 h-screen transition-all duration-300 flex flex-col`}
+      } bg-gray-900 text-white p-4 h-auto transition-all duration-300 flex flex-col`}
     >
       {/* Toggle Button */}
       <button
@@ -31,6 +31,15 @@ const Sidebar = () => {
             >
               <Home size={20} />
               {isOpen && <span>หน้าหลัก</span>}
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/list"
+              className="flex items-center gap-2 p-2 hover:bg-gray-700 rounded transition-colors"
+            >
+              <List size={20} />
+              {isOpen && <span>รวมรายชื่อ</span>}
             </Link>
           </li>
           <li>
